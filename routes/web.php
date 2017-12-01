@@ -27,6 +27,27 @@ Route::get('admin-login',[
 	'uses'=>'AdminController@getLogin',
 	'as'=>'login'
 ]);
+
+Route::post('admin-login',[
+    'uses'=>'AdminController@postLogin',
+    'as'=>'login'
+]);
+
+Route::get('admin-logout',[
+    'uses'=>'AdminController@getLogout',
+    'as'=>'logout'
+]);
+
+Route::get('admin-register',[
+    'uses'=>'AdminController@getRegister',
+    'as'=>'register'
+]);
+Route::post('admin-register',[
+    'uses'=>'AdminController@postRegister',
+    'as'=>'register'
+]);
+
+
 Route::group(['prefix'=>'admin'], function () {
     
     Route::get('/',[
@@ -38,5 +59,9 @@ Route::group(['prefix'=>'admin'], function () {
     	'uses'=>'AdminController@getListProduct',
     	'as'=>'list-product'
     ]);
+
+
+
+
 });
 

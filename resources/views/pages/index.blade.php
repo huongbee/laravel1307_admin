@@ -8,7 +8,11 @@
           <div class="panel-heading"><b>Admin</b>
           </div>
           <div class="panel-body">
-              Trang chủ
+              @if(Auth::check())
+              		Chào bạn, {{Auth::user()->fullname}}
+              @else
+              	Bạn chưa đăng nhập
+              @endif
           </div>
       </div>
   	</section>
