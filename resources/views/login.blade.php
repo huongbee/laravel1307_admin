@@ -35,6 +35,14 @@
   <body>
     <div class="container">
         <div class="card card-container">
+
+            @if(Session::has('login-fail'))
+                
+                <div class="alert alert-danger">
+                    {{Session::get('login-fail')}}
+                </div>
+
+            @endif
             <img id="profile-img" class="profile-img-card" src="https://cdn0.iconfinder.com/data/icons/PRACTIKA/256/user.png" />
             <p id="profile-name" class="profile-name-card"></p>
             <form class="form-signin" method="post" action="{{route('login')}}">

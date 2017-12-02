@@ -19,6 +19,9 @@ class AdminController extends Controller
     }
 
     public function getLogin(){
+        if(Auth::check()){
+            return redirect()->route('homepage');
+        }
     	return view('login');
     }
 
