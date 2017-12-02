@@ -7,10 +7,23 @@ use App\User;
 use Hash;
 //use Illuminate\Support\Facades\Hash;
 use Auth;
+use App\Menu;
 
 class AdminController extends Controller
 {
     public function getIndex(){
+        
+        $data = Menu::with('Foods')->get();
+        foreach($data as $menu){
+            echo "<h3>".$menu->name."</h3>";
+            echo "<br>";
+            foreach($menu->Foods as $monan) {
+                echo "- ".$monan->name;
+                echo "<br>";
+            }
+            echo "<hr>";
+        }
+        die;
     	return view('pages.index');
     }
 
@@ -21,6 +34,7 @@ class AdminController extends Controller
     public function getLogin(){
         if(Auth::check()){
             return redirect()->route('homepage');
+            //return view('pages.index');
         }
     	return view('login');
     }
@@ -72,8 +86,8 @@ class AdminController extends Controller
             'email'=>$req->inputEmail,
             'password'=>$req->inputPassword
         ];
-        if(Auth::attempt($info)){
-
+        $remember = 1;
+        if(Auth::attempt($info,$remember)){
             //echo "Login thành công";
             return redirect()->route('homepage');
         }

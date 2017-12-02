@@ -31,4 +31,8 @@ class User extends Authenticatable
 
 
     public $timestamps = false;
+
+    // public function RoleResource(){
+    //     return $this->belongsToMany('App\RoleResource',);
+    // }
 }
