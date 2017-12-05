@@ -14,41 +14,44 @@
             <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
                 <thead>
                     <tr>
-                        <th>Name</th>
-                        <th>Position</th>
-                        <th>Office</th>
-                        <th>Age</th>
-                        <th>Start date</th>
-                        <th>Salary</th>
+                        <th>Mã món</th>
+                        <th>Tên món</th>
+                        <th>Tên loại</th>
+                        <th>Đơn giá</th>
+                        <th style="width:35%">Mô tả</th>
+                        <th>Hình ảnh</th>
+                        <th>Options</th>
                     </tr>
                 </thead>
                 <tfoot>
                     <tr>
-                        <th>Name</th>
-                        <th>Position</th>
-                        <th>Office</th>
-                        <th>Age</th>
-                        <th>Start date</th>
-                        <th>Salary</th>
+                        <th>Mã món</th>
+                        <th>Tên món</th>
+                        <th>Tên loại</th>
+                        <th>Đơn giá</th>
+                        <th style="width:35%">Mô tả</th>
+                        <th>Hình ảnh</th>
+                        <th>Options</th>
                     </tr>
                 </tfoot>
                 <tbody>
+                <?php $stt =1;?>
+                    @foreach($foods as $food)
                     <tr>
-                        <td>Tiger Nixon</td>
-                        <td>System Architect</td>
-                        <td>Edinburgh</td>
-                        <td>61</td>
-                        <td>2011/04/25</td>
-                        <td>$320,800</td>
+                        <td>{{$stt}}</td>
+                        {{--  <td>{{$food->id}}</td>  --}}
+                        <td>{{$food->name}}</td>
+                        <td>{{$food->FoodType->name}}</td>
+                        <td>{{number_format($food->price)}}</td>
+                        <td style="width:35%">{{$food->summary}}</td>
+                        <td><img src="source/images/hinh_mon_an/{{$food->image}}" style="width:80px"/></td>
+                        <td>
+                            Edit |
+                            Delete
+                        </td>
                     </tr>
-                    <tr>
-                        <td>Tiger Nixon</td>
-                        <td>System Architect</td>
-                        <td>Edinburgh</td>
-                        <td>123R23</td>
-                        <td>2011/04/25</td>
-                        <td>$320,800</td>
-                    </tr>
+                    <?php $stt++?>
+                    @endforeach
                 </tbody>
             </table>
 

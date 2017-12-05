@@ -9,6 +9,7 @@ use Hash;
 use Auth;
 use App\Menu;
 use App\Foods;
+use App\FoodType;
 
 class AdminController extends Controller
 {
@@ -29,7 +30,8 @@ class AdminController extends Controller
     }
 
     public function getListProduct(){
-        $foods = Foods::all();
+        $foods = Foods::orderBy('id_type','asc')->with('FoodType')->get();
+        //dd($foods);die;
     	return view('pages.list-product',compact('foods'));
     }
 
