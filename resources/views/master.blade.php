@@ -385,7 +385,6 @@
   </section>
 
     <!-- js placed at the end of the document so the pages load faster -->
-    <script src="source/js/jquery.js"></script>
     <script src="source/js/bootstrap.min.js"></script>
     <script class="include" type="text/javascript" src="source/js/jquery.dcjqaccordion.2.7.js"></script>
     <script src="source/js/jquery.scrollTo.min.js"></script>

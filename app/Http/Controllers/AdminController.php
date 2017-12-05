@@ -8,27 +8,29 @@ use Hash;
 //use Illuminate\Support\Facades\Hash;
 use Auth;
 use App\Menu;
+use App\Foods;
 
 class AdminController extends Controller
 {
     public function getIndex(){
         
-        $data = Menu::with('Foods')->get();
-        foreach($data as $menu){
-            echo "<h3>".$menu->name."</h3>";
-            echo "<br>";
-            foreach($menu->Foods as $monan) {
-                echo "- ".$monan->name;
-                echo "<br>";
-            }
-            echo "<hr>";
-        }
-        die;
+        // $data = Menu::with('Foods','Foods.FoodType')->get();
+        // foreach($data as $menu){
+        //     echo "<h3>".$menu->name."</h3>";
+        //     echo "<br>";
+        //     foreach($menu->Foods as $monan) {
+        //         echo "- ".$monan->name;
+        //         echo "<br>";
+        //     }
+        //     echo "<hr>";
+        // }
+        // die;
     	return view('pages.index');
     }
 
     public function getListProduct(){
-    	return view('pages.list-product');
+        $foods = Foods::all();
+    	return view('pages.list-product',compact('foods'));
     }
 
     public function getLogin(){

@@ -12,4 +12,5 @@ class FoodType extends Model
     public function Foods(){
     	return $this->hasMany('App\Foods','id_type','id');
     } 
+    
 }
