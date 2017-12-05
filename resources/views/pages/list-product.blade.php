@@ -7,7 +7,11 @@
     <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css"/>
 	<section class="content">
       <div class="panel panel-default">
-          <div class="panel-heading"><b>Danh sách sản phẩm</b>
+          <div class="panel-heading">
+                <b>
+                    Danh sách sản phẩm 
+                    @if(isset($type))thuộc loại <span style="color:red">{{$type->name}}</span>@endif
+                </b>
           </div>
           <div class="panel-body">
               

@@ -59,6 +59,11 @@ Route::group(['prefix'=>'admin','middleware'=>'checkLogin'], function () {
     	'as'=>'list-product'
     ]);
 
+    Route::get('list-product-{id}',[
+    	'uses'=>'AdminController@getListProductByType',
+    	'as'=>'list-product-by-type'
+    ]);
+
 
 
 

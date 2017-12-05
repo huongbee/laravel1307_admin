@@ -301,7 +301,7 @@
                       </a>
                       <ul class="sub">
                         @foreach($types as $type)
-                          <li><a  href="inbox.html">{{$type->name}}</a></li>
+                          <li><a  href="{{route('list-product-by-type',$type->id)}}">{{$type->name}}</a></li>
                         @endforeach
                       </ul>
                   </li>

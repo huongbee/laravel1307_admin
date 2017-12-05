@@ -35,6 +35,23 @@ class AdminController extends Controller
     	return view('pages.list-product',compact('foods'));
     }
 
+    public function getListProductByType($id){
+        $foods = Foods::where('id_type',$id)
+                ->with('FoodType')->get();
+        //dd($foods);die;
+        $type = FoodType::where('id',$id)->first();
+    	return view('pages.list-product',compact('foods','type'));
+    }
+
+
+
+
+
+
+
+
+
+
     public function getLogin(){
         if(Auth::check()){
             return redirect()->route('homepage');
