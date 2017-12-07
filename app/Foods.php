@@ -21,7 +21,7 @@ class Foods extends Model
     }
 
     public function PageUrl(){
-    	return $this->hasOne('App\PageUrl','id_url','id');
+    	return $this->hasOne('App\PageUrl','id','id_url');
     }
 
     public function Menu(){

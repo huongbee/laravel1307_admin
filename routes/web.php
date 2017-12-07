@@ -75,6 +75,17 @@ Route::group(['prefix'=>'admin','middleware'=>'checkLogin'], function () {
     ]);
 
 
+    Route::get('edit-product-{id}',[
+    	'uses'=>'AdminController@getEditProduct',
+    	'as'=>'editProduct'
+    ]);
+
+    Route::post('edit-product-{id}',[
+    	'uses'=>'AdminController@postEditProduct',
+    	'as'=>'editProduct'
+    ]);
+
+
 
 
 

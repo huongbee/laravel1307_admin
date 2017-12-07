@@ -52,7 +52,7 @@
                         <td style="width:35%">{{$food->summary}}</td>
                         <td><img src="source/images/hinh_mon_an/{{$food->image}}" style="width:80px"/></td>
                         <td>
-                            Edit |
+                            <a href="{{route('editProduct',$food->id)}}">Edit</a> |
                             Delete
                         </td>
                     </tr>
