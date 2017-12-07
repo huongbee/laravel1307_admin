@@ -10,6 +10,9 @@ use Auth;
 use App\Menu;
 use App\Foods;
 use App\FoodType;
+use App\PageUrl;
+use App\Functions;
+
 
 class AdminController extends Controller
 {
@@ -45,6 +48,45 @@ class AdminController extends Controller
 
     public function getAddProduct(){
         return view('pages.add-product');
+    }
+    public function postAddProduct(Request $req){
+        $req->validate([
+            'name'=>'required|min:3|max:50',
+            'update_at'=>'required|date'
+        ],[
+            'name.required'=>"Vui long nhap ten",
+            'update_at.date'=> "Chọn ngày tháng đúng định dạng"
+        ]);
+        $f = new Functions;
+        $url = new PageUrl;
+        $url->url = $f->changeTitle($req->name);
+        $url->save();
+
+        $food = new Foods;
+        $food->id_type = $req->type;
+        $food->id_url = $url->id;
+        $food->name = $req->name;
+        $food->summary = $req->summary;
+        $food->detail = $req->detail;
+        $food->price = $req->price;
+        $food->promotion_price = $req->promotion_price;
+        $food->promotion = $req->promotion;
+        $food->update_at = date('Y-m-d',strtotime($req->update_at));
+        $food->unit = $req->unit;
+        $food->today = isset($req->today)? 1 : 0;
+        if($req->hasFile('image')){
+            $hinh = $req->file('image');
+            //dd($hinh);
+            $hinh->move('source/images/hinh_mon_an/',$hinh->getClientOriginalName());
+            $food->image = $hinh->getClientOriginalName();
+        }
+        else{
+            $food->image = '';
+        }
+        $food->save();
+        return redirect()->route('list-product-by-type',$req->type)
+                        ->with('success','Thêm thành công');
+
     }
 
 

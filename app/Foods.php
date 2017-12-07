@@ -8,6 +8,8 @@ class Foods extends Model
 {
     protected $table = "foods";
 
+    public $timestamps = false;
+
     // 1 foods thuộc về 1 loại
     public function FoodType(){
     	return $this->belongsTo('App\FoodType','id_type','id');

@@ -69,6 +69,11 @@ Route::group(['prefix'=>'admin','middleware'=>'checkLogin'], function () {
     	'as'=>'addProduct'
     ]);
 
+    Route::post('add-product',[
+    	'uses'=>'AdminController@postAddProduct',
+    	'as'=>'addProduct'
+    ]);
+
 
 
 

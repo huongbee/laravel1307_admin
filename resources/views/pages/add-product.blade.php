@@ -8,12 +8,12 @@
           <div class="panel-heading"><b>Add Product</b>
           </div>
           <div class="panel-body">
-              <form class="form-horizontal" action="">
+              <form class="form-horizontal" enctype="multipart/form-data" action="{{route('addProduct')}}" method="post">
               {{csrf_field()}}
                 <div class="form-group">
                     <label class="control-label col-sm-2" for="email">Name:</label>
                     <div class="col-sm-10">
-                    <input type="email" class="form-control" name="name" placeholder="Enter name">
+                    <input type="text" class="form-control" name="name" placeholder="Enter name">
                     </div>
                 </div>
                 <div class="form-group">
@@ -71,14 +71,14 @@
                 <div class="form-group"> 
                     <div class="col-sm-offset-2 col-sm-10">
                     <div class="checkbox">
-                        <label><input type="checkbox" name="today"> Today</label>
+                        <label><input type="checkbox" name="today" value='1'> Today</label>
                     </div>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="control-label col-sm-2" for="pwd">Choose Image:</label>
                     <div class="col-sm-10"> 
-                    <input type="file" name="image">
+                        <input type="file" name="image">
                     </div>
                 </div>
                 <div class="form-group"> 

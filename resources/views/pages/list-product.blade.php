@@ -14,7 +14,9 @@
                 </b>
           </div>
           <div class="panel-body">
-              
+            @if(Session::has('success'))
+                <div class="alert alert-success">{{Session::get('success')}}</div>
+            @endif
             <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
                 <thead>
                     <tr>
