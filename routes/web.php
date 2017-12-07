@@ -64,6 +64,11 @@ Route::group(['prefix'=>'admin','middleware'=>'checkLogin'], function () {
     	'as'=>'list-product-by-type'
     ]);
 
+    Route::get('add-product',[
+    	'uses'=>'AdminController@getAddProduct',
+    	'as'=>'addProduct'
+    ]);
+
 
 
 

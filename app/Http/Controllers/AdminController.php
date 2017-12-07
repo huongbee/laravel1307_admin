@@ -43,6 +43,10 @@ class AdminController extends Controller
     	return view('pages.list-product',compact('foods','type'));
     }
 
+    public function getAddProduct(){
+        return view('pages.add-product');
+    }
+
 
 
 
