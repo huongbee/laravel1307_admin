@@ -34,5 +34,14 @@ return [
         'key' => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
     ],
-
+    'google'=>[
+        'client_id'=>"696025184931-tud781dh1negd3h9mb8ah3pqaadgjln3.apps.googleusercontent.com",
+        'client_secret'=>'UMruiDQmK8kSn8faB6CHoIdT',
+        'redirect'=>'http://localhost/laravel1307_admin/public/admin/list-product-6'
+    ],
+    'facebook'=>[
+        'client_id'=>"149870968988846",
+        'client_secret'=>'6a1f01ee9d12ccf23ed7fb3c2ec4d62c',
+        'redirect'=>'http://localhost/laravel1307_admin/public/admin/list-product-6'
+    ]
 ];
