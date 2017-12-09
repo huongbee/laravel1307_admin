@@ -46,14 +46,14 @@
                     <tr>
                         <td>{{$stt}}</td>
                         {{--  <td>{{$food->id}}</td>  --}}
-                        <td>{{$food->name}}</td>
+                        <td id="tensp-{{$food->id}}">{{$food->name}}</td>
                         <td>{{$food->FoodType->name}}</td>
                         <td>{{number_format($food->price)}}</td>
                         <td style="width:35%">{{$food->summary}}</td>
                         <td><img src="source/images/hinh_mon_an/{{$food->image}}" style="width:80px"/></td>
                         <td>
                             <a href="{{route('editProduct',$food->id)}}">Edit</a> |
-                            Delete
+                            <a  class="delete" dataID="<?=$food->id?>">Delete</a>
                         </td>
                     </tr>
                     <?php $stt++?>
@@ -63,15 +63,56 @@
 
           </div>
       </div>
+
   	</section>
     
-    
+    <div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+        <div class="modal-body">
+            <p>Bạn có chắc chắn muốn xoá <span class="nameFood">name</span> hay không?</p>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-success btnExcept" >OK</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        </div>
+        </div>
+
+    </div>
+    </div>
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>
     <script>
     $(document).ready(function() {
         $('#example').DataTable();
+
+        $('.delete').click(function(){
+            var id = $(this).attr('dataID')
+            var name = $('#tensp-'+id).text()
+            $('.nameFood').html('<b>'+name+'</b>')
+            $('#myModal').modal('show')
+            $('.btnExcept').click(function(){
+                $.ajax({
+                    url:"{{route('deleteProduct')}}",
+                    data:{
+                        idSP:id,
+                       // _token:"{{csrf_token()}}"
+                    },
+                    type:"POST",
+                    success:function(data(){
+                        console.log('thanh cong')
+                    }),
+                    error:function(data(){
+                        console.log('loi')
+                    }),
+
+                })
+            })
+        })
+
     } );
     </script>
 @endsection

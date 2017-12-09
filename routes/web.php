@@ -85,6 +85,10 @@ Route::group(['prefix'=>'admin','middleware'=>'checkLogin'], function () {
     	'as'=>'editProduct'
     ]);
 
+    Route::post('delete-product-{id}',[
+    	'uses'=>'AdminController@postDeleteProduct',
+    	'as'=>'deleteProduct'
+    ]);
 
 
 
