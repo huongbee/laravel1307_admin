@@ -131,6 +131,19 @@ class AdminController extends Controller
                         ->with('success','Sửa thành công');
     }
 
+    public function postDeleteProduct(Request $req){
+        $id = $req->idSP;
+        $result = Foods::where('id',$id)->first();
+        if(!$result){
+            echo "error";
+        }
+        else{
+            $result->delete();
+            echo "success";
+        }
+        return;
+    }
+
 
 
 

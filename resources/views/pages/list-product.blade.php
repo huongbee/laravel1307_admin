@@ -75,7 +75,7 @@
             <p>Bạn có chắc chắn muốn xoá <span class="nameFood">name</span> hay không?</p>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-success btnExcept" >OK</button>
+            <button type="button" class="btn btn-success btnExcept" dataID="">OK</button>
             <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
         </div>
         </div>
@@ -94,21 +94,39 @@
             var name = $('#tensp-'+id).text()
             $('.nameFood').html('<b>'+name+'</b>')
             $('#myModal').modal('show')
+            $('#myModal').on('hidden.bs.modal', function (e) {
+                id = '';
+                name = '';
+            })
             $('.btnExcept').click(function(){
+              
+                var route = "{{route('deleteProduct','id')}}";
+                route = route.replace('id',id)
+                //console.log(route)
                 $.ajax({
-                    url:"{{route('deleteProduct')}}",
+                    url:route,
                     data:{
                         idSP:id,
-                       // _token:"{{csrf_token()}}"
+                        _token:"{{csrf_token()}}"
                     },
                     type:"POST",
-                    success:function(data(){
-                        console.log('thanh cong')
-                    }),
-                    error:function(data(){
-                        console.log('loi')
-                    }),
+                    success:function(data){
+                        if($.trim(data)=="success"){
+                            location.reload(true)
+                        }
+                        if($.trim(data)=="error"){
+                            $('.modal-body').html('<p>Error!! Vui lòng thử lại sau</p>')
+                           // $('#myModal').modal('hide')
+                        
+                        }
+                    },
+                    error:function(data){
+                        console.log(data)
+                    }
 
+                })
+                $('#myModal').on('hidden.bs.modal', function (e) {
+                    $('.modal-body').html('<p>Bạn có chắc chắn muốn xoá <span class="nameFood">name</span> hay không?</p>')
                 })
             })
         })
